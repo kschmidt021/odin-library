@@ -1,8 +1,11 @@
+// intialize library div and submit button
 const libDiv = document.querySelector("#library");
 const submitBookBtn = document.querySelector("#submit-book");
 
+// initialize library array
 const myLibrary = [];
 
+//prototype for book entry
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -10,33 +13,38 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+//pre-populate a book
 const theHobbit = new Book("The Hobbit","JRR Tolkien", 295, false);
 myLibrary.push(theHobbit);
 displayLibrary();
 
-
+// click submit button to add user entered book to MyLibrary
 submitBookBtn.addEventListener("click", (event) => {
     event.preventDefault();
     addBookToLibrary();
+    document.querySelector("#book-form").reset();
 })
 
+// add user book to myLibrary and trigger function to add it visually
 function addBookToLibrary() {
-    const newBookTitle = document.querySelector("#title").value;
-    const newBookAuthor = document.querySelector("#author").value;
-    const newBookPages = document.querySelector("#pages").value;
-    const newBookRead = document.querySelector('input[name="completed"]').checked;
+    var newBookTitle = document.querySelector("#title").value;
+    var newBookAuthor = document.querySelector("#author").value;
+    var newBookPages = document.querySelector("#pages").value;
+    var newBookRead = document.querySelector('input[name="completed"]').checked;
 
     const newBook = new Book(newBookTitle, newBookAuthor, newBookPages, newBookRead);
     myLibrary.push(newBook);
     displayBook(newBook);
 }
 
+// pre-populates books
 function displayLibrary() {
     for (book in myLibrary) {
         displayBook(myLibrary[book]);
     }
 }
 
+// adds books to the div visually
 function displayBook(book) {
     const bookDiv = document.createElement('div');
     bookDiv.setAttribute('class', 'book');
