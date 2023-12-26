@@ -55,11 +55,11 @@ html {
     grid-area: sidebar;
     justify-self: stretch;
     background-color: orange;
-    padding: 1rem 0px 0px 16px;
+    padding: 1rem;
     color: white;
 }
 
-#side-bar fieldset {
+#side-bar form {
     border: none;
     display: grid;
 }

@@ -1,10 +1,7 @@
 const libDiv = document.querySelector("#library");
+const submitBookBtn = document.querySelector("#submit-book");
 
 const myLibrary = [];
-
-
-addBookToLibrary();
-displayLibrary();
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -13,17 +10,30 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+const theHobbit = new Book("The Hobbit","JRR Tolkien", 295, false);
+myLibrary.push(theHobbit);
+displayLibrary();
+
+
+submitBookBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    addBookToLibrary();
+})
+
 function addBookToLibrary() {
-    const theHobbit = new Book("The Hobbit", "J.R.R Tolkien", "295", 0);
-    const harryPotter = new Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", "383", "0");
-    myLibrary.push(theHobbit);
-    myLibrary.push(harryPotter);
-    console.log(myLibrary);
+    const newBookTitle = document.querySelector("#title").value;
+    const newBookAuthor = document.querySelector("#author").value;
+    const newBookPages = document.querySelector("#pages").value;
+    const newBookRead = document.querySelector('input[name="completed"]').checked;
+
+    const newBook = new Book(newBookTitle, newBookAuthor, newBookPages, newBookRead);
+    myLibrary.push(newBook);
+    displayBook(newBook);
 }
 
 function displayLibrary() {
     for (book in myLibrary) {
-        displayBook(book);
+        displayBook(myLibrary[book]);
     }
 }
 
@@ -48,7 +58,7 @@ function displayBook(book) {
                 bookThTitle.textContent = "Title";
                 const bookTdTitle = document.createElement('td');
                 bookTrTitle.appendChild(bookTdTitle);
-                bookTdTitle.textContent = myLibrary[book].title;
+                bookTdTitle.textContent = book.title;
 
             const bookTrAuthor = document.createElement('tr');
             bookTable.appendChild(bookTrAuthor);
@@ -58,7 +68,7 @@ function displayBook(book) {
                 bookThAuthor.textContent = "Author";
                 const bookTdAuthor = document.createElement('td');
                 bookTrAuthor.appendChild(bookTdAuthor);
-                bookTdAuthor.textContent = myLibrary[book].author;
+                bookTdAuthor.textContent = book.author;
         
             const bookTrPages = document.createElement('tr');
             bookTable.appendChild(bookTrPages);
@@ -68,7 +78,7 @@ function displayBook(book) {
                 bookThPages.textContent = "Pages";
                 const bookTdPages = document.createElement('td');
                 bookTrPages.appendChild(bookTdPages);
-                bookTdPages.textContent = myLibrary[book].pages;
+                bookTdPages.textContent = book.pages;
 
             const bookTrRead = document.createElement('tr');
             bookTable.appendChild(bookTrRead);
@@ -78,5 +88,5 @@ function displayBook(book) {
                 bookThRead.textContent = "Completion Status";
                 const bookTdRead = document.createElement('td');
                 bookTrRead.appendChild(bookTdRead);
-                bookTdRead.textContent = myLibrary[book].read;
+                bookTdRead.textContent = book.read;
 }
