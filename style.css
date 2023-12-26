@@ -1,0 +1,99 @@
+@font-face {
+    font-family: Afacad;
+    src: url(./fonts/Afacad/Afacad-VariableFont_wght.ttf);
+}
+
+:root {
+    font-family: Afacad, Arial, Helvetica, sans-serif;
+}
+
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background-color: #ececee;
+    box-sizing: border-box;
+}
+
+#content {
+    display: grid;
+    grid-template-columns: max(200px, 20%) 1fr;
+    grid-template-areas: 
+        "hbar hbar"
+        "sidebar lib";
+}
+
+#h-bar {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-area: hbar;
+    gap: 0.5rem;
+    padding: 0.5rem 0 1rem .25rem;
+    background-color: navy;
+    box-shadow: 0px 6px 8px 5px rgba(139,139,139,0.78);
+    grid-template-areas: 
+        " .  icon header";
+
+}
+
+#h-bar h2 {
+    margin: 0;
+    font-size: 2rem;
+    color: white;
+    grid-area: header;
+}
+
+#h-icon {
+    fill: white;
+    grid-area: icon;
+    width: 3rem;
+}
+
+#side-bar {
+    grid-area: sidebar;
+    justify-self: stretch;
+    background-color: orange;
+    padding: 1rem 0px 0px 16px;
+    color: white;
+}
+
+#side-bar fieldset {
+    border: none;
+    display: grid;
+}
+
+#side-bar input {
+    color: black;
+}
+
+
+#library {
+    display: grid;
+    justify-content: center;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 1rem 3rem;
+    grid-area: lib;
+}
+
+.book {
+    display: grid;
+    grid-template-rows: 40% 1fr;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 5px 6px 8px 5px rgba(139,139,139,0.78);
+}
+
+.book img {
+    width: 5rem;
+}
+
+.book th {
+    padding-right: 1rem;
+
+}
