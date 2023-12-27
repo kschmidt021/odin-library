@@ -38,20 +38,20 @@ function addBookToLibrary() {
 
     const newBook = new Book(newBookTitle, newBookAuthor, newBookPages, newBookRead);
     myLibrary.push(newBook);
-    displayBook(newBook);
+    displayBook(newBook, (myLibrary.length - 1));
 }
 
 // pre-populates books
 function displayLibrary() {
     for (book in myLibrary) {
-        displayBook(myLibrary[book]);
+        displayBook(myLibrary[book], book);
     }
 }
 
 // adds books to the div visually
-function displayBook(book) {
+function displayBook(book, index) {
     const bookDiv = document.createElement('div');
-    bookDiv.setAttribute('class', 'book');
+    bookDiv.classList.add('book', 'book-'+index);
     libDiv.appendChild(bookDiv);
 
         const bookIcon = document.createElement('img');
@@ -97,8 +97,51 @@ function displayBook(book) {
 
                 const bookThRead = document.createElement('th');
                 bookTrRead.appendChild(bookThRead);
-                bookThRead.textContent = "Completion Status";
+                bookThRead.textContent = "Read Status";
                 const bookTdRead = document.createElement('td');
-                bookTrRead.appendChild(bookTdRead);
                 bookTdRead.textContent = book.read;
+                bookTrRead.appendChild(bookTdRead);
+        
+        const btnDiv = document.createElement('div');
+        btnDiv.setAttribute('class', 'btn-div');
+        bookDiv.appendChild(btnDiv);
+
+            const bookDelBtn = document.createElement('button');
+            bookDelBtn.classList.add('del-btn-book', index);
+            bookDelBtn.textContent = "Delete Book";
+            btnDiv.appendChild(bookDelBtn);
+
+            const bookStatusBtn = document.createElement('button');
+            bookStatusBtn.classList.add('read-btn-book', index);
+            btnDiv.appendChild(bookStatusBtn);
+            displayRead(book.read, bookStatusBtn);
 }
+
+function displayRead(readBook, bookStatusBtn) {
+    if (readBook === false) {
+                bookStatusBtn.textContent = "Read";
+            } else {
+                bookStatusBtn.textContent = "Un-Read";
+            }
+    bookStatusBtn.parentNode.previousSibling.lastChild.lastChild.textContent = readBook;
+}
+
+
+libDiv.addEventListener('click', (event) => {
+    let target = event.target;
+    if(target.classList.contains('del-btn-book')) {
+        index = +target.classList.item(1);
+        libDiv.removeChild(target.parentNode.parentNode);
+        myLibrary.splice(index, 1);
+    }
+    else if(target.classList.contains('read-btn-book')) {
+        index = +target.classList.item(1);
+        const readBook = myLibrary[index].read;
+        if (readBook == false) {
+            myLibrary[index].read = true;
+        } else {
+            myLibrary[index].read = false;
+        }
+        displayRead(myLibrary[index].read, target);
+    }
+})

@@ -113,3 +113,19 @@ html {
     padding-right: 1rem;
 
 }
+
+.book button {
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bolder;
+    background-color: #8A736B;
+    color: white;
+}
+
+.btn-div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    margin-bottom: 1rem;
+}
