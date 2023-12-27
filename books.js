@@ -2,6 +2,10 @@
 const libDiv = document.querySelector("#library");
 const submitBookBtn = document.querySelector("#submit-book");
 
+//initialize warning text to avoid repeats
+warningPara = document.createElement('p');
+warningPara.classList.add('warning-text');
+
 // initialize library array
 const myLibrary = [];
 
@@ -25,17 +29,38 @@ displayLibrary();
 // click submit button to add user entered book to MyLibrary
 submitBookBtn.addEventListener("click", (event) => {
     event.preventDefault();
-    addBookToLibrary();
+
+    var newBookTitle = document.querySelector("#title");
+    var newBookAuthor = document.querySelector("#author");
+    var newBookPages = document.querySelector("#pages");
+    var newBookRead = document.querySelector('input[name="completed"]');
+
+// error catching for form, with warning styling
+    if (newBookTitle.value.length < 1 || newBookAuthor.value.length < 1 || newBookPages.value < 1) {
+        if (newBookTitle.value.length < 1) {
+            const titleLabel = newBookTitle.parentNode;
+            console.log(titleLabel)
+            titleLabel.classList.add('warning-text');
+        } 
+        if (newBookAuthor.value.length < 1) {
+            const authorLabel = newBookAuthor.parentNode;
+            authorLabel.classList.add('warning-text');
+        }
+        if (newBookPages.value < 1) {
+            const pagesLabel = newBookPages.parentNode;
+            pagesLabel.classList.add('warning-text');
+        }
+        warningPara.textContent = "*Please complete all required sections"
+        newBookTitle.parentNode.parentNode.appendChild(warningPara);
+        return;
+    }
+
+    addBookToLibrary(newBookTitle.value, newBookAuthor.value, newBookPages.value, newBookRead.checked);
     document.querySelector("#book-form").reset();
 })
 
 // add user book to myLibrary and trigger function to add it visually
-function addBookToLibrary() {
-    var newBookTitle = document.querySelector("#title").value;
-    var newBookAuthor = document.querySelector("#author").value;
-    var newBookPages = document.querySelector("#pages").value;
-    var newBookRead = document.querySelector('input[name="completed"]').checked;
-
+function addBookToLibrary(newBookTitle, newBookAuthor, newBookPages, newBookRead) {
     const newBook = new Book(newBookTitle, newBookAuthor, newBookPages, newBookRead);
     myLibrary.push(newBook);
     displayBook(newBook, (myLibrary.length - 1));

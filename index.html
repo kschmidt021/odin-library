@@ -17,25 +17,30 @@
         <div id="side-bar">
             <form id="book-form" action="">
                     <legend>Add New Book:</legend>
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" id="title">
-
-                    <label for="author">Author:</label>
-                    <input type="text" name="author" id="author" required>
-
-                    <label for="pages">Pages:</label>
-                    <input type="number" name="pages" id="pages" required>
-
-                    <p>Completed:</p>
-                    <div>
-                        <input type="radio" name="completed" id="yes" value="yes">
-                        <label for="completed">Yes</label> 
+                    <div class="non-radio">
+                        <label for="title">*Title:</label>
+                        <input type="text" name="title" id="title">
                     </div>
-                    <div>
-                        <input type="radio" name="completed" id="no" value="no" checked>
-                        <label for="completed">No</label> 
+                    <div class="non-radio">
+                        <label for="author">*Author:</label>
+                        <input type="text" name="author" id="author" required>
                     </div>
+                    <div class="non-radio">
+                        <label for="pages">*Pages:</label>
+                        <input type="number" name="pages" id="pages" required>
 
+                    </div>
+                    <div class="non-radio">
+                        <p>Completed:</p>
+                        <div>
+                            <input type="radio" name="completed" id="yes" value="yes">
+                            <label for="completed">Yes</label> 
+                        </div>
+                        <div>
+                            <input type="radio" name="completed" id="no" value="no" checked>
+                            <label for="completed">No</label> 
+                        </div>
+                    </div>
                     <button type="submit" id="submit-book">Submit</button>
             </form>
         </div>
