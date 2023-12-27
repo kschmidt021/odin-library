@@ -13,9 +13,13 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-//pre-populate a book
+//pre-populate books
 const theHobbit = new Book("The Hobbit","JRR Tolkien", 295, false);
+const theWizardOfOz = new Book("The Wizard of Oz","L. Frank Baum", 272, true);
+const crackingTheCodingInterview = new Book("Cracking the Coding Interview","Gayle Laakmann McDowell", 687, false);
 myLibrary.push(theHobbit);
+myLibrary.push(theWizardOfOz);
+myLibrary.push(crackingTheCodingInterview);
 displayLibrary();
 
 // click submit button to add user entered book to MyLibrary

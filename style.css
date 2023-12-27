@@ -31,8 +31,8 @@ html {
     grid-area: hbar;
     gap: 0.5rem;
     padding: 0.5rem 0 1rem .25rem;
-    background-color: navy;
-    box-shadow: 0px 6px 8px 5px rgba(139,139,139,0.78);
+    background-color: #8A736B;
+    box-shadow: 0px 6px 8px 5px rgba(139,139,139,0.3);
     grid-template-areas: 
         " .  icon header";
 
@@ -53,10 +53,19 @@ html {
 
 #side-bar {
     grid-area: sidebar;
+    display: grid;
     justify-self: stretch;
-    background-color: orange;
+    align-items: start;
+    background-color: #37363A;
     padding: 1rem;
-    color: white;
+    color: #989A97;
+    box-shadow: 7px 3px 15px 2px rgba(139,139,139,0);
+}
+
+#side-bar legend {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: #F9FAF9;
 }
 
 #side-bar form {
@@ -68,29 +77,36 @@ html {
     color: black;
 }
 
+#side-bar p {
+    margin: 0;
+}
+
 
 #library {
     display: grid;
     justify-content: center;
+    align-items: start;
     gap: 1rem;
     grid-template-columns: repeat(3, 1fr);
     margin: 1rem 3rem;
     grid-area: lib;
+    min-height: 100vh;
 }
 
 .book {
     display: grid;
-    grid-template-rows: 40% 1fr;
+    grid-template-rows: 30% 1fr;
     align-items: center;
     justify-content: center;
     justify-items: center;
     background-color: white;
     border-radius: 25px;
-    box-shadow: 5px 6px 8px 5px rgba(139,139,139,0.78);
+    box-shadow: 5px 6px 8px 5px rgba(139,139,139,0.3);
+    height: 250px;
 }
 
 .book img {
-    width: 5rem;
+    width: 4rem;
 }
 
 .book th {
