@@ -5,8 +5,8 @@
 
 :root {
     font-family: Afacad, Arial, Helvetica, sans-serif;
+    
 }
-
 
 body,
 html {
@@ -22,6 +22,26 @@ html {
     grid-template-areas: 
         "hbar hbar"
         "sidebar lib";
+}
+
+@media screen and (max-width: 540px ){
+    #content {
+        grid-template-columns: 100vw;
+        grid-template-rows: 5% 25% 1fr;
+        grid-template-areas: 
+        "hbar"
+        "sidebar"
+        "lib";
+    }
+
+    #side-bar,
+    #side-bar legend {
+        font-size: 0.8rem;
+    }
+
+    #book-form {
+        row-gap: 1% !important;
+    }
 }
 
 .warning-text {
@@ -96,7 +116,7 @@ html {
 
 #side-bar button {
     justify-self: center;
-    padding: 10px 20px;
+    padding: .8rem 1.5rem;
     font-weight: bolder;
 }
 
@@ -118,7 +138,7 @@ html {
 
 .book {
     display: grid;
-    grid-template-rows: 30% 1fr;
+    grid-template-rows: 30% 1fr 20%;
     align-items: center;
     justify-content: center;
     justify-items: center;
@@ -137,7 +157,7 @@ html {
 }
 
 .book button {
-    padding: 10px;
+    padding: 0.8rem;
     border: none;
     border-radius: 25px;
     font-weight: bolder;
@@ -149,7 +169,7 @@ html {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2rem;
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 
 .book button:hover {
